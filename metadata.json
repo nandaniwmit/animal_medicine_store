@@ -1,0 +1,6 @@
+{
+  "name": "Animal Medicine Store",
+  "description": "Your trusted medical store for genuine medicines, surgical supplies, and healthcare needs in Tikari, Gaya. Order easily online or via WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
