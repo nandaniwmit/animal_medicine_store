@@ -226,7 +226,7 @@ export default function Footer({ activeTab, setActiveTab, openModal }: FooterPro
           
           {/* Copyright text */}
           <div className="text-center lg:text-left text-slate-400">
-            &copy; {currentYear} <span className="font-semibold text-slate-300">Animal Medicine Store</span>. All rights reserved. Developed by <a href="https://main.webmakerit.com" target="_blank" rel="noopener noreferrer" className="hover:text-emerald-400 transition-colors underline font-medium">WMIT</a>.
+            &copy; {currentYear} <span className="font-semibold text-slate-300">Animal Medicine Store</span>. All rights reserved. <a href="#" className="wmit-popup-trigger hover:text-white underline transition-colors" target="_blank" rel="noopener noreferrer">Developed by WMIT</a>.
           </div>
 
           {/* Action Policy Links */}
