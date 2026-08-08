@@ -37,12 +37,22 @@ export default function SEOHead({ title, description, pagePath }: SEOHeadProps) 
     setMetaTag("author", BUSINESS_INFO.name);
 
     // 4. Set OpenGraph tags
+    const baseUrl = "https://animal-medicine-store.vercel.app";
     setMetaTag("og:title", finalTitle, true);
     setMetaTag("og:description", finalDescription, true);
     setMetaTag("og:type", "website", true);
-    setMetaTag("og:url", `https://animalmedicinestore-gaya.web.app/${pagePath}`, true);
+    setMetaTag("og:url", `${baseUrl}/${pagePath}`, true);
     setMetaTag("og:image", "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&q=80&w=800", true);
     setMetaTag("og:site_name", BUSINESS_INFO.name, true);
+
+    // Set Canonical URL tag
+    let canonicalLink = document.querySelector("link[rel='canonical']") as HTMLLinkElement;
+    if (!canonicalLink) {
+      canonicalLink = document.createElement("link");
+      canonicalLink.setAttribute("rel", "canonical");
+      document.head.appendChild(canonicalLink);
+    }
+    canonicalLink.setAttribute("href", pagePath ? `${baseUrl}/#${pagePath}` : `${baseUrl}/`);
 
     // 5. Set Twitter Cards
     setMetaTag("twitter:card", "summary_large_image");
@@ -66,12 +76,12 @@ export default function SEOHead({ title, description, pagePath }: SEOHeadProps) 
       "@graph": [
         {
           "@type": "Pharmacy",
-          "@id": "https://animalmedicinestore-gaya.web.app/#pharmacy",
+          "@id": `${baseUrl}/#pharmacy`,
           "name": BUSINESS_INFO.name,
           "description": finalDescription,
           "telephone": BUSINESS_INFO.phone,
           "email": BUSINESS_INFO.email,
-          "url": "https://animalmedicinestore-gaya.web.app/",
+          "url": `${baseUrl}/`,
           "logo": "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&q=80&w=200",
           "image": "https://images.unsplash.com/photo-1607613009820-a29f7bb81c04?auto=format&fit=crop&q=80&w=800",
           "priceRange": "$$",
@@ -85,8 +95,8 @@ export default function SEOHead({ title, description, pagePath }: SEOHeadProps) 
           },
           "geo": {
             "@type": "GeoCoordinates",
-            "latitude": "24.9427", // Approximate latitude for Tikari, Gaya
-            "longitude": "84.8197" // Approximate longitude for Tikari, Gaya
+            "latitude": "24.9427",
+            "longitude": "84.8197"
           },
           "openingHoursSpecification": [
             {
@@ -103,31 +113,30 @@ export default function SEOHead({ title, description, pagePath }: SEOHeadProps) 
             }
           ],
           "sameAs": [
-            "https://www.facebook.com/AnimalMedicineStoreTikari",
-            "https://g.co/kgs/xyz" // Custom maps
+            "https://www.facebook.com/AnimalMedicineStoreTikari"
           ]
         },
         {
           "@type": "BreadcrumbList",
-          "@id": "https://animalmedicinestore-gaya.web.app/#breadcrumb",
+          "@id": `${baseUrl}/#breadcrumb`,
           "itemListElement": [
             {
               "@type": "ListItem",
               "position": 1,
               "name": "Home",
-              "item": "https://animalmedicinestore-gaya.web.app/"
+              "item": `${baseUrl}/`
             },
             {
               "@type": "ListItem",
               "position": 2,
               "name": pagePath || "Home",
-              "item": `https://animalmedicinestore-gaya.web.app/${pagePath}`
+              "item": `${baseUrl}/${pagePath}`
             }
           ]
         },
         {
           "@type": "FAQPage",
-          "@id": "https://animalmedicinestore-gaya.web.app/#faq",
+          "@id": `${baseUrl}/#faq`,
           "mainEntity": FAQS_DATA.slice(0, 5).map(faq => ({
             "@type": "Question",
             "name": faq.question,

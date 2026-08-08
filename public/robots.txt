@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://animal-medicine-store.vercel.app/sitemap.xml
